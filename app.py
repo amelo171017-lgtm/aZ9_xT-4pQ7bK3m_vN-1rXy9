@@ -98,5 +98,8 @@ def logout():
     session.pop('autenticado', None)
     return jsonify({'sucesso': True})
 
+# Para compatibilidade com Vercel
+app.debug = False
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
