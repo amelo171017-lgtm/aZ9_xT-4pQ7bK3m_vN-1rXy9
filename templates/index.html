@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema de Consulta</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ url_for('static', filename='manifest.json') }}"
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <link
+      rel="apple-touch-icon"
+      href="{{ url_for('static', filename='icon-192x192.svg') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Tela de Login -->
+      <div id="login-screen" class="screen active">
+        <h1>Sistema de Consulta</h1>
+        <form id="login-form" class="form-container">
+          <div class="input-group">
+            <input
+              type="password"
+              id="senha"
+              placeholder="Digite a senha"
+              required
+            />
+            <button type="submit" class="btn-primary">Acessar</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tela Principal -->
+      <div id="main-screen" class="screen">
+        <div class="header">
+          <h1>Seleção de Categorias</h1>
+          <button id="logout-btn" class="btn-secondary">Sair</button>
+        </div>
+
+        <div class="data-summary">
+          <div class="summary-card">
+            <span class="summary-label">Total de Registros:</span>
+            <span id="total-registros" class="summary-value">-</span>
+          </div>
+          <div class="summary-card">
+            <span class="summary-label">Total de Campos:</span>
+            <span id="total-campos" class="summary-value">-</span>
+          </div>
+        </div>
+
+        <div class="categories-container">
+          <h3>Selecione as categorias:</h3>
+          <div id="categories-list" class="categories-grid"></div>
+        </div>
+
+        <div class="actions">
+          <button id="buscar-btn" class="btn-primary" disabled>
+            Buscar Códigos
+          </button>
+          <button id="ver-dados-btn" class="btn-secondary">
+            Ver Dados Completos
+          </button>
+        </div>
+
+        <div id="results-container" class="results-container hidden">
+          <h3>Resultados da Busca</h3>
+          <div id="results-content"></div>
+          <div class="copy-actions">
+            <button id="copy-id-btn" class="btn-secondary" style="display: none;">
+              📋 Copiar ID
+            </button>
+            <button id="copy-message-btn" class="btn-primary" style="display: none;">
+              💬 Copiar Mensagem
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal de Dados -->
+      <div id="data-modal" class="modal hidden">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3>Dados Completos</h3>
+            <button id="close-modal" class="close-btn">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div id="data-table-container"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
